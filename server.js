@@ -13,6 +13,8 @@ app.get('/prices', async (req, res) => {
     const workbook = XLSX.read(response.data, { type: 'buffer' });
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
     const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+console.log('Content-Type:', response.headers['content-type']);
+console.log('Response length:', response.data?.length);
 
     const row = data[data.length - 1];
 
