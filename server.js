@@ -9,7 +9,17 @@ app.use(cors());
 app.get('/prices', async (req, res) => {
   try {
     const url = 'https://onedrive.live.com/download?resid=ED7EB020544F6733%21113&authkey=%21ACNac6VLwtHQfZk&em=2';
-    const response = await axios.get(url, { responseType: 'arraybuffer' });
+    const response = await axios.get(url, {
+  responseType: 'arraybuffer',
+  headers: {
+    'User-Agent':
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Referer': 'https://onedrive.live.com/',
+    'Connection': 'keep-alive'
+  }
+});
 
     const workbook = XLSX.read(response.data, { type: 'buffer' });
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
