@@ -14,7 +14,7 @@ app.get('/prices', async (req, res) => {
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
     const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-    const row = data[1]; // другий рядок (після заголовків)
+    const row = data[data.length - 1];
 
     if (!row || row.length < 4) {
       return res.status(400).json({ error: 'Недостатньо даних у Excel' });
