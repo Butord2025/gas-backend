@@ -41,10 +41,10 @@ app.get('/prices', async (req, res) => {
     console.log('Останній рядок:', row);
 
     res.json({
-      a92: row[0],
-      a95: row[1],
-      dp: row[2],
-      gaz: row[3]
+      a92: row[1],
+      a95: row[2],
+      dp: row[3],
+      gaz: row[4]
     });
   } catch (err) {
     console.error('Помилка:', err.message);
